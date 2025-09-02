@@ -10,7 +10,7 @@ export interface SequenceResponse  { sequence: SequenceRow[]; }
   providedIn: 'root'
 })
 export class BoardingService {
-  private baseUrl = 'http://localhost:3000';
+  private baseUrl = 'https://bus-booking-api-1.onrender.com';
 
   constructor(private http: HttpClient) { }
 
