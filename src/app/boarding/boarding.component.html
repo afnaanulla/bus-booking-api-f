@@ -1,0 +1,32 @@
+<div class="card">
+  <h2>Bus Boarding Sequence</h2>
+  <div class="controls">
+    <!-- added aria-label for better accessibility -->
+    <input type="file" aria-label="Upload boarding data file" (change)="onFileSelected($event)" accept=".txt,.csv" />
+    <!-- enhanced button styles; kept Angular bindings intact -->
+    <button (click)="onUpload()" [disabled]="loading" aria-label="Generate boarding sequence">Generate</button>
+  </div>
+
+  <!-- role and live region for assistive tech -->
+  <div class="status" role="status" aria-live="polite" *ngIf="loading">Processing...</div>
+
+  <!-- role alert for errors -->
+  <div class="error" role="alert" *ngIf="error">{{ error }}</div>
+
+  <table *ngIf="rows.length" aria-label="Generated boarding sequence">
+    <thead>
+      <tr><th>Seq</th><th>Booking_ID</th></tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let r of rows">
+        <td>{{ r.seq }}</td>
+        <td>{{ r.bookingId }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p *ngIf="!rows.length && !loading && !error" class="hint">
+    * Upload a text file with lines like: <code>.txt, .csv</code>
+  </p>
+</div>
+  
